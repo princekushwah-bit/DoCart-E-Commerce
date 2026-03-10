@@ -21,18 +21,13 @@ export const registration = async (req,res) => {
 
     const user = await User.create({name,email,password:hashPassword})
     let token = await genToken(user._id)
-    // res.cookie("token",token,{
-    //     httpOnly:true,
-    //     secure:true,
-    //     sameSite: "none",
-    //     maxAge: 7 * 24 * 60 * 60 * 1000
-    // })
-    res.cookie("token", token, {
-    httpOnly: true,
-    secure: false,  // Isse false kardo localhost ke liye
-    sameSite: "lax", // Isse "lax" kardo localhost ke liye
-    maxAge: 7 * 24 * 60 * 60 * 1000
-})
+    res.cookie("token",token,{
+        httpOnly:true,
+        secure:true,
+        sameSite: "none",
+        maxAge: 7 * 24 * 60 * 60 * 1000
+    })
+  
     return res.status(201).json(user)
   } catch (error) {
     console.log("registration error")
@@ -54,18 +49,13 @@ export const login = async (req,res) => {
             return res.status(400).json({message:"Incorrect password"})
         }
         let token = await genToken(user._id)
-    //     res.cookie("token",token,{
-    //     httpOnly:true,
-    //     secure:true,
-    //     sameSite: "none",
-    //     maxAge: 7 * 24 * 60 * 60 * 1000
-    // })
-    res.cookie("token", token, {
-    httpOnly: true,
-    secure: false,  // Isse false kardo localhost ke liye
-    sameSite: "lax", // Isse "lax" kardo localhost ke liye
-    maxAge: 7 * 24 * 60 * 60 * 1000
-})
+        res.cookie("token",token,{
+        httpOnly:true,
+        secure:true,
+        sameSite: "none",
+        maxAge: 7 * 24 * 60 * 60 * 1000
+    })
+ 
     return res.status(201).json(user)
 
     } catch (error) {
@@ -104,18 +94,13 @@ export const googleLogin = async (req,res) => {
         }
        
         let token = await genToken(user._id)
-    //     res.cookie("token",token,{
-    //     httpOnly:true,
-    //     secure:true,
-    //     sameSite: "none",
-    //     maxAge: 7 * 24 * 60 * 60 * 1000
-    // })
-    res.cookie("token", token, {
-    httpOnly: true,
-    secure: false,  // Isse false kardo localhost ke liye
-    sameSite: "lax", // Isse "lax" kardo localhost ke liye
-    maxAge: 7 * 24 * 60 * 60 * 1000
-})
+        res.cookie("token",token,{
+        httpOnly:true,
+        secure:true,
+        sameSite: "none",
+        maxAge: 7 * 24 * 60 * 60 * 1000
+    })
+  
     return res.status(200).json(user)
 
     } catch (error) {
@@ -131,18 +116,13 @@ export const adminLogin = async (req,res) => {
         let {email , password} = req.body
         if(email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD){
         let token = await genToken1(email)
-    //     res.cookie("token",token,{
-    //     httpOnly:true,
-    //     secure:true,
-    //     sameSite: "none",
-    //     maxAge: 1 * 24 * 60 * 60 * 1000
-    // })
-    res.cookie("token", token, {
-    httpOnly: true,
-    secure: false,  // Isse false kardo localhost ke liye
-    sameSite: "lax", // Isse "lax" kardo localhost ke liye
-    maxAge: 7 * 24 * 60 * 60 * 1000
-})
+        res.cookie("token",token,{
+        httpOnly:true,
+        secure:true,
+        sameSite: "none",
+        maxAge: 1 * 24 * 60 * 60 * 1000
+    })
+  
     return res.status(200).json(token)
         }
         return res.status(400).json({message:"Invaild creadintials"})
