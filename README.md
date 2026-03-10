@@ -41,7 +41,7 @@ DoShopAI-main/
 Clone the Repository:
 
 Bash
-git clone https://github.com/your-username/DoCart-FullStack.git
+git clone git@github.com:princekushwah-bit/DoCart-E-Commerce.git
 cd DoCart-FullStack
 Backend Setup:
 
